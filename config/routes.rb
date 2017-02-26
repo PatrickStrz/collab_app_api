@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ideas
   resources :problems
   # get 'secured_ping/ping', to: 'secured_ping#ping'
   #
