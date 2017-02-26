@@ -1,4 +1,5 @@
 class IdeasController < ApplicationController
+  before_action :authenticate, only: [:update, :destroy, :create]
   before_action :set_idea, only: [:show, :update, :destroy]
 
   def index
