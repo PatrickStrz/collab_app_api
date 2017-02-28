@@ -1,9 +1,10 @@
 class IdeasController < ApplicationController
   before_action :authenticate, only: [:update, :destroy, :create]
-  before_action :set_idea, only: [:show, :update, :destroy]
+  before_action :set_problem, only: [:show, :update, :destroy]
+  before_action :set_problem_idea, only: [:show, :update, :destroy]
 
   def index
-    @ideas = Idea.all
+    @ideas = Problem.find(params[:problem_id]).ideas.all
     render json: @ideas
   end
 
@@ -34,8 +35,11 @@ class IdeasController < ApplicationController
   end
 
   private
-    def set_idea
-      @idea = Idea.find(params[:id])
+    def set_problem
+      @problem = Problem.find(params[:problem_id])
+    end
+    def set_problem_idea
+      @idea = @problem.ideas.find(params[:id])
     end
 
     def idea_params
