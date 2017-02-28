@@ -1,10 +1,11 @@
 class IdeasController < ApplicationController
   before_action :authenticate, only: [:update, :destroy, :create]
-  before_action :set_idea, only: [:show, :update, :destroy]
+  before_action :set_problem
+  before_action :set_problem_idea, only: [:show, :update, :destroy]
 
   def index
-    @ideas = Idea.all
-    render json: @ideas
+    ideas = Problem.find(params[:problem_id]).ideas.all
+    render json: ideas
   end
 
   def show
@@ -12,12 +13,11 @@ class IdeasController < ApplicationController
   end
 
   def create
-    @idea = Idea.new(idea_params)
-
-    if @idea.save
-      render json: @idea
+    idea = @problem.ideas.new(idea_params)
+    if idea.save
+      render json: idea
     else
-      render json: @idea.errors, status: :unprocessable_entity
+      render json: idea.errors, status: :unprocessable_entity
     end
   end
 
@@ -34,11 +34,14 @@ class IdeasController < ApplicationController
   end
 
   private
-    def set_idea
-      @idea = Idea.find(params[:id])
+    def set_problem
+      @problem = Problem.find(params[:problem_id])
+    end
+    def set_problem_idea
+      @idea = @problem.ideas.find(params[:id])
     end
 
     def idea_params
-      return params.require(:idea).permit(:auth0_id, :text, :title, :rank, :active, :problem_id)
+      return params.require(:idea).permit(:auth0_id, :text, :title, :rank, :active)
     end
 end

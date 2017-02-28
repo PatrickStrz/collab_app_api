@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :ideas
   resources :problems
+  resources :problems do
+    resources :ideas
+  end
   # get 'secured_ping/ping', to: 'secured_ping#ping'
   #
   # get 'ping/ping', to: 'ping#ping'
