@@ -1,13 +1,13 @@
 class ProblemsController < ApplicationController
-  #authenticate from knock/auth0 
+  #authenticate from knock/auth0
   before_action :authenticate, only: [:update, :destroy, :create]
   before_action :set_problem, only: [:show, :update, :destroy]
 
   # GET /problems
   def index
-    @problems = Problem.all
+    problems = Problem.all
 
-    render json: @problems
+    render json: problems
   end
 
   # GET /problems/1
@@ -17,12 +17,12 @@ class ProblemsController < ApplicationController
 
   # POST /problems
   def create
-    @problem = Problem.new(problem_params)
+    problem = Problem.new(problem_params)
 
-    if @problem.save
-      render json: @problem, status: :created, location: @problem
+    if problem.save
+      render json: problem, status: :created, location: problem
     else
-      render json: @problem.errors, status: :unprocessable_entity
+      render json: problem.errors, status: :unprocessable_entity
     end
   end
 
