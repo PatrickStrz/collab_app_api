@@ -1,5 +1,5 @@
 class IdeasController < ApplicationController
-  before_action :authenticate, only: [:update, :destroy, :create]
+  # before_action :authenticate, only: [:update, :destroy, :create]
   before_action :set_problem
   before_action :set_problem_idea, only: [:show, :update, :destroy]
 
