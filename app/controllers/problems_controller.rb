@@ -1,6 +1,6 @@
 class ProblemsController < ApplicationController
   #authenticate from knock/auth0
-  before_action :authenticate, only: [:update, :destroy, :create]
+  # before_action :authenticate, only: [:update, :destroy, :create]
   before_action :set_problem, only: [:show, :update, :destroy]
 
   # GET /problems
