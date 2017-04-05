@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  resources :comments do
-    resources :comments
-  end
+
   resources :problems
+
   resources :problems do
     resources :ideas
   end
+
+  resources :ideas do
+    resources :comments, only: [:create, :update, :delete]
+  end
+
   # get 'secured_ping/ping', to: 'secured_ping#ping'
   #
   # get 'ping/ping', to: 'ping#ping'
@@ -13,5 +17,8 @@ Rails.application.routes.draw do
   get 'ping' => 'ping#ping'
   get 'secured/ping' => 'secured_ping#ping'
 
+  resources :comments do
+    resources :comments
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
