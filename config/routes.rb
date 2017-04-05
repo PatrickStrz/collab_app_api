@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :comments do
+    resources :comments
+  end
   resources :problems
   resources :problems do
     resources :ideas
