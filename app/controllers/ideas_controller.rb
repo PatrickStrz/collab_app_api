@@ -34,7 +34,6 @@ class IdeasController < ApplicationController
   end
 
   private
-
     def set_problem
       @problem = Problem.find(params[:problem_id])
     end
