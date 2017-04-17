@@ -40,6 +40,6 @@ class ProblemsController < ApplicationController
     end
 
     def problem_params
-      params.require(:problem).permit(:auth0_id, :text, :title, :rank, :active)
+      params.require(:problem).permit(:auth0_id, :text, :title, :rank, :active, :user_id)
     end
 end
