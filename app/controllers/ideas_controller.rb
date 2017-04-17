@@ -43,6 +43,13 @@ class IdeasController < ApplicationController
     end
 
     def idea_params
-      return params.require(:idea).permit(:auth0_id, :text, :title, :rank, :active)
+      return params.require(:idea).permit(
+        :auth0_id,
+        :text,
+        :title,
+        :rank,
+        :active,
+        :user_id,
+      )
     end
 end
